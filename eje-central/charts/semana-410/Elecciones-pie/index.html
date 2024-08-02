@@ -1,1 +1,74 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Votaciones - Pie</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5; /* Fondo para mejor visualización */
+        }
+        .chart-container {
+            width: 95vw; /* Ancho del contenedor del gráfico */
+            max-height: 95vh; /* Altura máxima del contenedor del gráfico */
+            padding: 10px; /* Espacio alrededor del gráfico */
+            box-sizing: border-box;
+            background-color: #fff; /* Fondo blanco para el contenedor */
+            border: 1px solid #ddd; /* Borde ligero para el contenedor */
+        }
+        canvas {
+            max-width: 100%;
+            height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="myPieChart">Your browser does not support the canvas element.</canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Claudia Sheinbaum Pardo', 'Bertha Xóchitl Gálvez Ruiz', 'Jorge Álvarez Máynez'],
+                datasets: [{
+                    label: '% votos',
+                    data: [59.4, 27.9, 10.4],
+                    backgroundColor: [
+                        'rgba(175, 39, 47, 1)', // Color para Claudia Sheinbaum Pardo
+                        'green', // Color para Bertha Xóchitl Gálvez Ruiz
+                        'orange' // Color para Jorge Álvarez Máynez
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Resultados de Votaciones México 2024',
+                        font: {
+                            size: 18
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
