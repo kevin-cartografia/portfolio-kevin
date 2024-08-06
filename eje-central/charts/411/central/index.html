@@ -1,1 +1,170 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados por País (2000-2023)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-subtitle"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5; /* Fondo para mejor visualización */
+            font-family: Arial, sans-serif; /* Fuente coherente para todo el documento */
+        }
+        .chart-container {
+            width: 95vw; /* Ancho del contenedor del gráfico */
+            max-height: 95vh; /* Altura máxima del contenedor del gráfico */
+            padding: 10px; /* Espacio alrededor del gráfico */
+            box-sizing: border-box;
+            background-color: #fff; /* Fondo blanco para el contenedor */
+            border: 1px solid #ddd; /* Borde ligero para el contenedor */
+            position: relative; /* Necesario para posicionar el footer */
+        }
+        canvas {
+            max-width: 100%;
+            height: 500px; /* Ajusta la altura como desees */
+        }
+        .footer-note {
+            position: absolute;
+            bottom: 10px; /* Ajusta la distancia del borde inferior */
+            right: 10px; /* Distancia del borde derecho */
+            font-size: 10px; /* Tamaño de fuente igual al de los títulos de los ejes */
+            color: #333;
+            text-align: right;
+            font-family: Arial, sans-serif; /* Coincide con la fuente del gráfico */
+            font-weight: bold; /* Negrita para el pie de página */
+        }
+        .source-note {
+            position: absolute;
+            bottom: 10px; /* Distancia del borde inferior */
+            left: 10px; /* Distancia del borde izquierdo */
+            font-size: 10px; /* Tamaño de fuente igual al de los títulos de los ejes */
+            color: #333;
+            font-family: Arial, sans-serif; /* Coincide con la fuente del gráfico */
+            font-weight: bold; /* Negrita para el pie de página */
+        }
+        .subtitle {
+            word-wrap: break-word; /* Permite el salto de línea en dispositivos móviles */
+            text-align: center; /* Centra el texto del subtítulo */
+            margin-bottom: 20px; /* Espacio debajo del subtítulo */
+            white-space: pre-wrap; /* Permite los saltos de línea */
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="myChart">Your browser does not support the canvas element.</canvas>
+        <div class="footer-note">BigDiseño</div>
+        <div class="source-note">Fuente: Fuente</div>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line', // Tipo de gráfico
+            data: {
+                labels: [
+                    '2000', '2001', '2002', '2003', '2004', 
+                    '2005', '2006', '2007', '2008', '2009', 
+                    '2010', '2011', '2012', '2013', '2014', 
+                    '2015', '2016', '2017', '2018', '2019', 
+                    '2020', '2021', '2022', '2023'
+                ],
+                datasets: [
+                    {
+                        label: 'México',
+                        data: [99, 99, 99, 99, 99, 99, 99, 99, 98, 98, 96, 99, 99, 90, 95, 99, 96, 93, 90, 84, 77, 83, 93, 89],
+                        borderColor: 'rgba(175, 39, 47, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        label: 'Argentina',
+                        data: [96, 96, 96, 96, 99, 99, 93, 94, 97, 94, 95, 94, 94, 94, 98, 94, 93, 91, 91, 87, 79, 88, 90, 77],
+                        borderColor: 'green',
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        label: 'Brasil',
+                        data: [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 98, 98, 97, 95, 92, 87, 79, 88, 74, 84, 96],
+                        borderColor: 'orange',
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        label: 'Chile',
+                        data: [98, 99, 98, 98, 94, 92, 95, 98, 96, 94, 93, 94, 90, 92, 99, 97, 99, 98, 99, 99, 98, 99, 99, 99],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        label: 'Colombia',
+                        data: [91, 82, 93, 94, 90, 97, 98, 97, 97, 97, 96, 95, 91, 97, 91, 93, 94, 94, 92, 95, 92, 90, 91, 90],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Resultados por País (2000-2023)',
+                        font: {
+                            size: 18,
+                            weight: 'bold' // Negrita para el título del gráfico
+                        }
+                    },
+                    subtitle: {
+                        display: true,
+                        text: 'De las cinco grandes economías de Latinoamérica, las únicas donde la aplicación de la primera dosis de DTP se ha mantenido por encima del 90% desde el 2000 son Chile y Colombia.',
+                        font: {
+                            size: 14
+                        },
+                        padding: {
+                            bottom: 10
+                        }
+                    },
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Año',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold' // Negrita
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Valor',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold' // Negrita
+                            }
+                        },
+                        min: 60, // Ajusta según el rango de tus datos
+                        max: 100, // Ajusta según el rango de tus datos
+                        stepSize: 5
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
