@@ -3,7 +3,7 @@
 <head>
     <title>Resultados por País (2000-2023)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-subtitle"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
     <style>
         body {
             margin: 0;
@@ -11,46 +11,40 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f5f5f5; /* Fondo para mejor visualización */
-            font-family: Arial, sans-serif; /* Fuente coherente para todo el documento */
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
         }
         .chart-container {
-            width: 95vw; /* Ancho del contenedor del gráfico */
-            max-height: 95vh; /* Altura máxima del contenedor del gráfico */
-            padding: 10px; /* Espacio alrededor del gráfico */
+            width: 95vw;
+            max-height: 95vh;
+            padding: 10px;
             box-sizing: border-box;
-            background-color: #fff; /* Fondo blanco para el contenedor */
-            border: 1px solid #ddd; /* Borde ligero para el contenedor */
-            position: relative; /* Necesario para posicionar el footer */
+            background-color: #fff;
+            border: 1px solid #ddd;
+            position: relative;
         }
         canvas {
             max-width: 100%;
-            height: 500px; /* Ajusta la altura como desees */
+            height: 500px;
         }
         .footer-note {
             position: absolute;
-            bottom: 10px; /* Ajusta la distancia del borde inferior */
-            right: 10px; /* Distancia del borde derecho */
-            font-size: 10px; /* Tamaño de fuente igual al de los títulos de los ejes */
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
             color: #333;
             text-align: right;
-            font-family: Arial, sans-serif; /* Coincide con la fuente del gráfico */
-            font-weight: bold; /* Negrita para el pie de página */
+            font-family: Arial, sans-serif;
+            font-weight: bold;
         }
         .source-note {
             position: absolute;
-            bottom: 10px; /* Distancia del borde inferior */
-            left: 10px; /* Distancia del borde izquierdo */
-            font-size: 10px; /* Tamaño de fuente igual al de los títulos de los ejes */
+            bottom: 10px;
+            left: 10px;
+            font-size: 10px;
             color: #333;
-            font-family: Arial, sans-serif; /* Coincide con la fuente del gráfico */
-            font-weight: bold; /* Negrita para el pie de página */
-        }
-        .subtitle {
-            word-wrap: break-word; /* Permite el salto de línea en dispositivos móviles */
-            text-align: center; /* Centra el texto del subtítulo */
-            margin-bottom: 20px; /* Espacio debajo del subtítulo */
-            white-space: pre-wrap; /* Permite los saltos de línea */
+            font-family: Arial, sans-serif;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -63,7 +57,7 @@
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'line', // Tipo de gráfico
+            type: 'line',
             data: {
                 labels: [
                     '2000', '2001', '2002', '2003', '2004', 
@@ -119,17 +113,32 @@
                         text: 'Resultados por País (2000-2023)',
                         font: {
                             size: 18,
-                            weight: 'bold' // Negrita para el título del gráfico
+                            weight: 'bold'
                         }
                     },
-                    subtitle: {
-                        display: true,
-                        text: 'De las cinco grandes economías de Latinoamérica, las únicas donde la aplicación de la primera dosis de DTP se ha mantenido por encima del 90% desde el 2000 son Chile y Colombia.',
-                        font: {
-                            size: 14
-                        },
-                        padding: {
-                            bottom: 10
+                    annotation: {
+                        annotations: {
+                            subtitle: {
+                                type: 'label',
+                                backgroundColor: 'rgba(0,0,0,0.1)',
+                                content: [
+                                    'De las cinco grandes economías de Latinoamérica,',
+                                    'las únicas donde la aplicación de la primera dosis',
+                                    'de DTP se ha mantenido por encima del 90% desde el 2000',
+                                    'son Chile y Colombia.'
+                                ],
+                                font: {
+                                    size: 14
+                                },
+                                position: {
+                                    x: '50%',
+                                    y: '5%'
+                                },
+                                padding: {
+                                    top: 10
+                                },
+                                color: '#333'
+                            }
                         }
                     },
                     legend: {
@@ -144,7 +153,7 @@
                             color: '#333',
                             font: {
                                 size: 14,
-                                weight: 'bold' // Negrita
+                                weight: 'bold'
                             }
                         }
                     },
@@ -155,11 +164,11 @@
                             color: '#333',
                             font: {
                                 size: 14,
-                                weight: 'bold' // Negrita
+                                weight: 'bold'
                             }
                         },
-                        min: 60, // Ajusta según el rango de tus datos
-                        max: 100, // Ajusta según el rango de tus datos
+                        min: 60,
+                        max: 100,
                         stepSize: 5
                     }
                 }
