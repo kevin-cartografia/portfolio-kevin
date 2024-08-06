@@ -3,12 +3,11 @@
 <head>
     <title>Resultados por País (2000-2023)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
     <style>
         body {
             margin: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             background-color: #f5f5f5;
@@ -16,7 +15,7 @@
         }
         .chart-container {
             width: 95vw;
-            max-height: 95vh;
+            max-height: 80vh;
             padding: 10px;
             box-sizing: border-box;
             background-color: #fff;
@@ -46,9 +45,15 @@
             font-family: Arial, sans-serif;
             font-weight: bold;
         }
+        h1, h3 {
+            text-align: center;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
+    <h1 style="color:green;">Resultados por País (2000-2023)</h1>
+    <h3 style="color:black;">De las cinco grandes economías de Latinoamérica, las únicas donde la aplicación de la primera dosis de DTP se ha mantenido por encima del 90% desde el 2000 son Chile y Colombia.</h3>
     <div class="chart-container">
         <canvas id="myChart">Your browser does not support the canvas element.</canvas>
         <div class="footer-note">BigDiseño</div>
@@ -108,39 +113,6 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    title: {
-                        display: true,
-                        text: 'Resultados por País (2000-2023)',
-                        font: {
-                            size: 18,
-                            weight: 'bold'
-                        }
-                    },
-                    annotation: {
-                        annotations: {
-                            subtitle: {
-                                type: 'label',
-                                backgroundColor: 'rgba(0,0,0,0.1)',
-                                content: [
-                                    'De las cinco grandes economías de Latinoamérica,',
-                                    'las únicas donde la aplicación de la primera dosis',
-                                    'de DTP se ha mantenido por encima del 90% desde el 2000',
-                                    'son Chile y Colombia.'
-                                ],
-                                font: {
-                                    size: 14
-                                },
-                                position: {
-                                    x: '50%',
-                                    y: '5%'
-                                },
-                                padding: {
-                                    top: 10
-                                },
-                                color: '#333'
-                            }
-                        }
-                    },
                     legend: {
                         display: true
                     }
@@ -160,7 +132,7 @@
                     y: {
                         title: {
                             display: true,
-                            text: 'Valor',
+                            text: '%',
                             color: '#333',
                             font: {
                                 size: 14,
