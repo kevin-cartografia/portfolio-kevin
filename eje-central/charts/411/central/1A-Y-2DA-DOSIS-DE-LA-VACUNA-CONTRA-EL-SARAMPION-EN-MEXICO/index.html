@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1A Y 2DA DOSIS DE LA VACUNA CONTRA EL SARAMPIÓN EN MÉXICO</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .chart-container {
+            width: 95vw;
+            max-height: 80vh;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border: 0px solid #ddd;
+            position: relative;
+        }
+        canvas {
+            max-width: 100%;
+            height: 500px;
+        }
+        .footer-note {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: #333;
+            text-align: right;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        .source-note {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        h3, h5 {
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h3>1A Y 2DA DOSIS DE LA VACUNA CONTRA EL SARAMPIÓN EN MÉXICO</h3>
+    <font size=2 align=center><b>COMO SUCEDIÓ CON OTRAS VACUNAS, en 2013 hubo un descenso en la cobertura tanto de la primera dosis como de la segunda, pero se recuperó al año siguiente. Después hubo reducciones importantes en 2017 (76%), 2019 (73%) y 2023 (76%)</b></font>
+    <div class="chart-container">
+        <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
+        <div class="footer-note">KVN</div>
+        <div class="source-note">Fuente: Fuente</div>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [
+                    '2000', '2001', '2002', '2003', '2004', 
+                    '2005', '2006', '2007', '2008', '2009', 
+                    '2010', '2011', '2012', '2013', '2014', 
+                    '2015', '2016', '2017', '2018', '2019', 
+                    '2020', '2021', '2022', '2023'
+                ],
+                datasets: [
+                    {
+                        label: 'MCV1',
+                        data: [96, 95, 96, 96, 96, 96, 96, 96, 96, 96, 95, 98, 99, 89, 97, 97, 96, 97, 73, 92, 99, 86, 76],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 4,
+                        fill: false
+                    },
+                    {
+                        label: 'MCV2',
+                        data: [98, 99, 89, 96, 97, 97, 91, 85, 94, 92, 91, 97, 92, 76, 95, 96, 98, 99, 55, 79, 97, 82, 74],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 4,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Año',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '%',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        min: 50,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
