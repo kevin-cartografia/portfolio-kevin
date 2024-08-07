@@ -115,6 +115,13 @@
                 plugins: {
                     legend: {
                         display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + '%';
+                            }
+                        }
                     }
                 },
                 scales: {
@@ -141,7 +148,11 @@
                         },
                         min: 60,
                         max: 100,
-                        stepSize: 5
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
                     }
                 }
             }
