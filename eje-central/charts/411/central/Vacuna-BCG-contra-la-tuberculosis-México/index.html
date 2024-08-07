@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vacuna BCG contra la tuberculosis México</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .chart-container {
+            width: 95vw;
+            max-height: 80vh;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border: 0px solid #ddd;
+            position: relative;
+        }
+        canvas {
+            max-width: 100%;
+            height: 500px;
+        }
+        .footer-note {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: #333;
+            text-align: right;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        .source-note {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        h3, h5 {
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h3>VACUNA BCG CONTRA LA TUBERCULOSIS MÉXICO</h3>
+    <font size=2 align=center><b> EN 2020, LA APLICACIÓN</b> en México de la vacuna BCG (contra la tuberculosis) se redujo a sólo 28%, es es un caso excepcional en América Latina, donde otras economías, aunque tuvieron coberturas reducidas por la pandemia, mantuvieron mejores niveles o, como en Chile, no se redujeron</font>
+    <div class="chart-container">
+        <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
+        <div class="footer-note">KVN</div>
+        <div class="source-note">Fuente: Fuente</div>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [
+                    '2000', '2001', '2002', '2003', '2004', 
+                    '2005', '2006', '2007', '2008', '2009', 
+                    '2010', '2011', '2012', '2013', '2014', 
+                    '2015', '2016', '2017', '2018', '2019', 
+                    '2020', '2021', '2022', '2023'
+                ],
+                datasets: [
+                    {
+                        label: 'México',
+                        data: [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 98, 99, 99, 91, 96, 98, 99, 94, 96, 76, 28, 99, 95, 89],
+                        borderColor: 'rgba(175, 39, 47, 1)',
+                        borderWidth: 4,
+                        fill: false
+                    },
+                    {
+                        label: 'Argentina',
+                        data: [95, 92, 95, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 96, 92, 93, 85, 75, 80, 81, 69],
+                        borderColor: 'green',
+                        borderWidth: 4,
+                        fill: false
+                    },
+                    {
+                        label: 'Brasil',
+                        data: [99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 96, 94, 98, 85, 73, 69, 88, 79],
+                        borderColor: 'orange',
+                        borderWidth: 4,
+                        fill: false
+                    },
+                    {
+                        label: 'Chile',
+                        data: [93, 98, 96, 95, 95, 95, 98, 98, 99, 95, 91, 92, 98, 98, 93, 97, 96, 96, 98, 98, 98, 99, 98],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 4,
+                        fill: false
+                    },
+                    {
+                        label: 'Colombia',
+                        data: [91, 87, 87, 97, 92, 94, 96, 93, 93, 90, 84, 87, 89, 85, 89, 90, 88, 91, 90, 89, 87, 87, 87],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 4,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Año',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '%',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        min: 0,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
