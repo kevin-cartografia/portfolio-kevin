@@ -1,1 +1,180 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Violencia contra las mujeres</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .chart-container {
+            width: 95vw;
+            max-height: 80vh;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border: 0px solid #ddd;
+            position: relative;
+        }
+        canvas {
+            max-width: 100%;
+            height: 500px;
+        }
+        .footer-note {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: #333;
+            text-align: right;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        .source-note {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        h3, h5 {
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h3 style="color:red;">VIOLENCIA CONTRA LAS MUJERES</h3>
+  <font size=2 align=center><b>Número de mujeres víctimas</b> <br> (primer semestre de cada año) </font>
+    <div class="chart-container">
+        <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
+        <div class="footer-note">KVN</div>
+        <div class="source-note">Fuente: </div>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [
+                    {
+                        label: 'Feminicidio',
+                        data: [188, 341, 393, 437, 451, 488, 538, 519, 452, 418],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        fill: false
+                    },
+                    {
+                        label: 'Homicidio doloso',
+                        data: [756, 981, 1174, 1341, 1399, 1457, 1380, 1379, 1296, 1320],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        fill: false
+                    },
+                    {
+                        label: 'Homicidio culposo',
+                        data: [1809, 1534, 1670, 1649, 1615, 1499, 1611, 1914, 1926, 1737],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        fill: false
+                    },
+                    {
+                        label: 'Lesiones dolosas',
+                        data: [31506, 31844, 32534, 30851, 34110, 28107, 31833, 33784, 35775, 35679],
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 2,
+                        yAxisID: 'y2',
+                        fill: false
+                    },
+                    {
+                        label: 'Extorsión',
+                        data: [1076, 960, 1112, 1040, 1571, 1407, 1550, 1987, 1898, 1988],
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        fill: false
+                    },
+                    {
+                        label: 'Corrupción de menores',
+                        data: [582, 603, 612, 598, 759, 758, 784, 956, 932, 999],
+                        borderColor: 'rgba(255, 205, 86, 1)',
+                        borderWidth: 2,
+                        yAxisID: 'y1',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Año',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    y1: {
+                        title: {
+                            display: true,
+                            text: 'Número de víctimas',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        position: 'left'
+                    },
+                    y2: {
+                        title: {
+                            display: true,
+                            text: 'Lesiones dolosas',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        position: 'right',
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
