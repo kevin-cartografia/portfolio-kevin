@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vacuna Antineumocócica Conjugada</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .chart-container {
+            width: 95vw;
+            max-height: 80vh;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border: 0px solid #ddd;
+            position: relative;
+        }
+        canvas {
+            max-width: 100%;
+            height: 500px;
+        }
+        .footer-note {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: #333;
+            text-align: right;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        .source-note {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-weight: regular;
+        }
+        h3, h5 {
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h3 style="color:green;">VACUNA ANTINEUMOCÓCICA CONJUGADA</h3>
+    <font size=2 align=center><b>TAMBIÉN ESTA VACUNA TUVO</b> una baja en 2013, pero se recuperó al año siguiente. A partir de 2019 volvió a bajar y ha tenido sus peores niveles en 2020 (77%) y 2023 (78%).</b></font>
+    <div class="chart-container">
+        <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
+        <div class="footer-note">KVN</div>
+        <div class="source-note">Fuente: Fuente</div>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [
+                    '2008', '2009', '2010', '2011', '2012', 
+                    '2013', '2014', '2015', '2016', '2017', 
+                    '2018', '2019', '2020', '2021', '2022', 
+                    '2023'
+                ],
+                datasets: [
+                    {
+                        label: 'PCV3',
+                        data: [14, 46, 92, 98, 99, 84, 94, 93, 92, 92, 88, 86, 77, 83, 84, 78],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 4,
+                        pointRadius: 5, // Círculos en los puntos
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Año',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '%',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        min: 0,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
