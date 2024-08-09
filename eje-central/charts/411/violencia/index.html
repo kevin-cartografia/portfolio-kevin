@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Radiografía del fenómeno</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -52,123 +53,183 @@
     </style>
 </head>
 <body>
-    <h3 style="color:red;">RADIOGRAFÍA DEL FENÓMENO</h3>
-  <font size=2 align=center><b>ESTA GRÁFICA</b> muestra que en en los últimos nueve años la violencia contra las mujeres aumentó, y se incrementaron las víctimas de delitos de alto impacto del sexo femenino. <br> (primer semestre de cada año) </font>
+    <h3 style="color:red;">RADIÓGRAFÍA DEL FENÓMENO</h3>
+    <font size=2 align=center><b>ESTA GRÁFICA MUESTRA</b> que en los últimos nueve años la violencia contra las mujeres aumentó, y se incrementaron las víctimas de delitos de alto impacto del sexo femenino</font>
     <div class="chart-container">
-        <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
-        <div class="footer-note">GeoMap Studio</div>
+        <canvas id="bubbleChart">Su navegador no soporta el elemento canvas.</canvas>
+      <div class="footer-note"><b>GeoMap Studio</b></div>
         <div class="source-note">Fuente: SESNSP</div>
     </div>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
+        var ctx = document.getElementById('bubbleChart').getContext('2d');
+        var bubbleChart = new Chart(ctx, {
+            type: 'bubble',
             data: {
-                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024], // Etiquetas para el eje X
                 datasets: [
                     {
                         label: 'Feminicidio',
-                        data: [188, 341, 393, 437, 451, 488, 538, 519, 452, 418],
+                        data: [
+                            {x: 2015, y: 188, r: 10},
+                            {x: 2016, y: 341, r: 18},
+                            {x: 2017, y: 393, r: 20},
+                            {x: 2018, y: 437, r: 22},
+                            {x: 2019, y: 451, r: 22},
+                            {x: 2020, y: 488, r: 24},
+                            {x: 2021, y: 538, r: 26},
+                            {x: 2022, y: 519, r: 25},
+                            {x: 2023, y: 452, r: 22},
+                            {x: 2024, y: 418, r: 20}
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
                         borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 2,
-                        yAxisID: 'y1',
-                        fill: false
+                        borderWidth: 1,
+                        yAxisID: 'y'
                     },
                     {
                         label: 'Homicidio doloso',
-                        data: [756, 981, 1174, 1341, 1399, 1457, 1380, 1379, 1296, 1320],
+                        data: [
+                            {x: 2015, y: 756, r: 15},
+                            {x: 2016, y: 981, r: 20},
+                            {x: 2017, y: 1174, r: 24},
+                            {x: 2018, y: 1341, r: 28},
+                            {x: 2019, y: 1399, r: 30},
+                            {x: 2020, y: 1457, r: 32},
+                            {x: 2021, y: 1380, r: 31},
+                            {x: 2022, y: 1379, r: 31},
+                            {x: 2023, y: 1296, r: 29},
+                            {x: 2024, y: 1320, r: 29}
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
                         borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 2,
-                        yAxisID: 'y1',
-                        fill: false
+                        borderWidth: 1,
+                        yAxisID: 'y'
                     },
                     {
                         label: 'Homicidio culposo',
-                        data: [1809, 1534, 1670, 1649, 1615, 1499, 1611, 1914, 1926, 1737],
+                        data: [
+                            {x: 2015, y: 1809, r: 35},
+                            {x: 2016, y: 1534, r: 30},
+                            {x: 2017, y: 1670, r: 33},
+                            {x: 2018, y: 1649, r: 33},
+                            {x: 2019, y: 1615, r: 32},
+                            {x: 2020, y: 1499, r: 30},
+                            {x: 2021, y: 1611, r: 32},
+                            {x: 2022, y: 1914, r: 38},
+                            {x: 2023, y: 1926, r: 38},
+                            {x: 2024, y: 1737, r: 34}
+                        ],
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
                         borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        yAxisID: 'y1',
-                        fill: false
+                        borderWidth: 1,
+                        yAxisID: 'y'
                     },
                     {
                         label: 'Lesiones dolosas',
-                        data: [31506, 31844, 32534, 30851, 34110, 28107, 31833, 33784, 35775, 35679],
+                        data: [
+                            {x: 2015, y: 31506, r: 50},
+                            {x: 2016, y: 31844, r: 50},
+                            {x: 2017, y: 32534, r: 52},
+                            {x: 2018, y: 30851, r: 49},
+                            {x: 2019, y: 34110, r: 55},
+                            {x: 2020, y: 28107, r: 46},
+                            {x: 2021, y: 31833, r: 50},
+                            {x: 2022, y: 33784, r: 53},
+                            {x: 2023, y: 35775, r: 56},
+                            {x: 2024, y: 35679, r: 56}
+                        ],
+                        backgroundColor: 'rgba(255, 0, 0, 0.9)',
                         borderColor: 'rgba(153, 102, 255, 1)',
-                        borderWidth: 2,
-                        yAxisID: 'y2',
-                        fill: false
+                        borderWidth: 1,
+                        yAxisID: 'y1'
                     },
                     {
                         label: 'Extorsión',
-                        data: [1076, 960, 1112, 1040, 1571, 1407, 1550, 1987, 1898, 1988],
+                        data: [
+                            {x: 2015, y: 1076, r: 20},
+                            {x: 2016, y: 960, r: 18},
+                            {x: 2017, y: 1112, r: 22},
+                            {x: 2018, y: 1040, r: 20},
+                            {x: 2019, y: 1571, r: 30},
+                            {x: 2020, y: 1407, r: 27},
+                            {x: 2021, y: 1550, r: 29},
+                            {x: 2022, y: 1987, r: 37},
+                            {x: 2023, y: 1898, r: 35},
+                            {x: 2024, y: 1988, r: 37}
+                        ],
+                        backgroundColor: 'rgba(255, 159, 64, 0.6)',
                         borderColor: 'rgba(255, 159, 64, 1)',
-                        borderWidth: 2,
-                        yAxisID: 'y1',
-                        fill: false
+                        borderWidth: 1,
+                        yAxisID: 'y'
                     },
                     {
                         label: 'Corrupción de menores',
-                        data: [582, 603, 612, 598, 759, 758, 784, 956, 932, 999],
+                        data: [
+                            {x: 2015, y: 582, r: 15},
+                            {x: 2016, y: 603, r: 16},
+                            {x: 2017, y: 612, r: 16},
+                            {x: 2018, y: 598, r: 16},
+                            {x: 2019, y: 759, r: 20},
+                            {x: 2020, y: 777, r: 20},
+                            {x: 2021, y: 776, r: 20},
+                            {x: 2022, y: 737, r: 19},
+                            {x: 2023, y: 692, r: 18},
+                            {x: 2024, y: 705, r: 18}
+                        ],
+                        backgroundColor: 'rgba(255, 205, 86, 0.6)',
                         borderColor: 'rgba(255, 205, 86, 1)',
-                        borderWidth: 2,
-                        yAxisID: 'y1',
-                        fill: false
+                        borderWidth: 1,
+                        yAxisID: 'y'
                     }
                 ]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.raw;
-                            }
-                        }
-                    }
-                },
                 scales: {
                     x: {
+                        type: 'category', // Asegúrate de que el tipo sea 'category'
+                        beginAtZero: true,
                         title: {
                             display: true,
                             text: 'Año',
-                            color: '#333',
                             font: {
-                                size: 14,
-                                weight: 'bold'
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Número de casos',
+                            font: {
+                                size: 12
                             }
                         }
                     },
                     y1: {
-                        title: {
-                            display: true,
-                            text: 'Número de víctimas',
-                            color: '#333',
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        },
-                        position: 'left'
-                    },
-                    y2: {
+                        beginAtZero: true,
+                        type: 'linear',
+                        position: 'right',
                         title: {
                             display: true,
                             text: 'Lesiones dolosas',
-                            color: '#333',
                             font: {
-                                size: 14,
-                                weight: 'bold'
+                                size: 12
                             }
                         },
-                        position: 'right',
-                        ticks: {
-                            callback: function(value) {
-                                return value.toLocaleString();
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw.y;
                             }
                         }
                     }
