@@ -45,7 +45,14 @@
             font-family: Arial, sans-serif;
             font-weight: regular;
         }
-        h3, h5 {
+        .source-note a {
+            color: green;
+            text-decoration: none;
+        }
+        .source-note a:hover {
+            text-decoration: underline;
+        }
+            h3, h5 {
             text-align: center;
             margin: 10px 0;
         }
@@ -56,8 +63,9 @@
     <font size=2 align=center><b>EN EL CASO MEXICANO,</b> la vacuna contra la poliomielitis empezó a escasear desde 2013, cuando la cobertura fue de 83%, después de haber mantenido coberturas cercanas al 100%.</b></font>
     <div class="chart-container">
         <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
-        <div class="footer-note">KVN</div>
-        <div class="source-note">Fuente: Fuente</div>
+        <div class="footer-note"><b>Stats & Maps Design</b></div>
+        <div class="source-note">Fuente: <a href="https://data.unicef.org/topic/child-health/immunization/" target="_blank"><b>DATA.UNICEF.ORG</b></a>
+        </div>
     </div>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -76,8 +84,8 @@
                         label: 'POL3',
                         data: [97, 97, 98, 98, 98, 98, 98, 98, 96, 95, 95, 97, 99, 83, 87, 87, 93, 85, 88, 82, 72, 78, 83, 85],
                         borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 4,
-                        pointRadius: 5, // Círculos en los puntos
+                        borderWidth: 8,
+                        pointRadius: 2,
                         fill: false
                     }
                 ]
@@ -119,7 +127,7 @@
                                 weight: 'bold'
                             }
                         },
-                        min: 60,
+                        min: 70,
                         max: 100,
                         ticks: {
                             callback: function(value) {
