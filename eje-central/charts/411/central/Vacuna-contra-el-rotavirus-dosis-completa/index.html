@@ -45,7 +45,14 @@
             font-family: Arial, sans-serif;
             font-weight: regular;
         }
-        h3, h5 {
+        .source-note a {
+            color: green;
+            text-decoration: none;
+        }
+        .source-note a:hover {
+            text-decoration: underline;
+        }
+           h3, h5 {
             text-align: center;
             margin: 10px 0;
         }
@@ -56,8 +63,9 @@
     <font size=2 align=center><b>UNA NOTABLE EXCEPCIÓN</b> en la falta de cobertura es la vacuna contra el rotavirus, ya que después de 2020, cuando 69% de cobertura ha subido a niveles superiores a los que tuvo entre 2016 y 2019.</font>
     <div class="chart-container">
         <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
-        <div class="footer-note">KVN</div>
-        <div class="source-note">Fuente: Fuente</div>
+        <div class="footer-note"><b>Stats & Maps Design</b></div>
+        <div class="source-note">Fuente: <a href="https://data.unicef.org/topic/child-health/immunization/" target="_blank"><b>DATA.UNICEF.ORG</b></a>
+        </div>
     </div>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -75,7 +83,8 @@
                         label: 'Rotavirus',
                         data: [47, 93, 90, 98, 99, 81, 85, 81, 72, 70, 77, 71, 69, 77, 84, 80],
                         borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 4,
+                        borderWidth: 8,
+                        pointRadius: 2,
                         fill: false
                     }
                 ]
