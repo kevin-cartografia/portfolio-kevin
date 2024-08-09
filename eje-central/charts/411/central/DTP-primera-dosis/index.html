@@ -45,7 +45,14 @@
             font-family: Arial, sans-serif;
             font-weight: regular;
         }
-        h3, h5 {
+        .source-note a {
+            color: green;
+            text-decoration: none;
+        }
+        .source-note a:hover {
+            text-decoration: underline;
+        }
+          h3, h5 {
             text-align: center;
             margin: 10px 0;
         }
@@ -57,7 +64,8 @@
     <div class="chart-container">
         <canvas id="myChart">Su navegador no soporta el elemento canvas.</canvas>
         <div class="footer-note">Stats & Maps Design</div>
-        <div class="source-note">Fuente: DATA.UNICEF.ORG</div>
+        <div class="source-note">Fuente: <a href="https://data.unicef.org/topic/child-health/immunization/" target="_blank">DATA.UNICEF.ORG</a>
+        </div>
     </div>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
