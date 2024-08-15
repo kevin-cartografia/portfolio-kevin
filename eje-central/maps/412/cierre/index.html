@@ -18,7 +18,7 @@
 <body>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-google-mutant/"></script>
+    <script src="https://unpkg.com/leaflet-google-mutant@0.7.1/dist/leaflet-google-mutant.min.js"></script>
     <script>
         // Inicializar el mapa
         var map = L.map('map').setView([44.5231938, -110.8379678], 13);
@@ -27,7 +27,7 @@
         var googleSat = L.gridLayer.googleMutant({
             type: 'satellite',
             maxZoom: 20,
-            googleApiKey: 'AIzaSyBgoZjZhHLdsLtQix1fwNrfjFIYFuVKccw'
+            googleApiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
         }).addTo(map);
 
         // Datos GeoJSON
