@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-110.8379678, 44.5231938]
+      },
+      "properties": {
+        "name": "Punto de Ejemplo",
+        "description": "Este es un punto de ejemplo en el mapa.",
+        "photo": "https://via.placeholder.com/150"
+      }
+    }
+  ]
+}
