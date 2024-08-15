@@ -1,62 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Interactivo</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <title>Google Maps Satelital</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
     <style>
         #map {
             height: 100vh;
         }
-        .leaflet-popup-content img {
-            max-width: 200px;
-            height: auto;
-        }
     </style>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 44.5231938, lng: -110.8379678 },
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            });
+
+            var contentString = '<div><h3>Punto de Ejemplo</h3><p>Este es un punto de ejemplo en el mapa.</p><img src="https://via.placeholder.com/150" alt="Foto"></div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: 44.5231938, lng: -110.8379678 },
+                map: map,
+                title: 'Punto de Ejemplo'
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
 </head>
 <body>
     <div id="map"></div>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-google-mutant@0.7.1/dist/leaflet-google-mutant.min.js"></script>
-    <script>
-        // Inicializar el mapa
-        var map = L.map('map').setView([44.5231938, -110.8379678], 13);
-
-        // Agregar capa de Google Maps Satelital
-        var googleSat = L.gridLayer.googleMutant({
-            type: 'satellite',
-            maxZoom: 20,
-            googleApiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-        }).addTo(map);
-
-        // Datos GeoJSON
-        var geojsonFeature = {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [-110.8379678, 44.5231938]
-                    },
-                    "properties": {
-                        "name": "Punto de Ejemplo",
-                        "description": "Este es un punto de ejemplo en el mapa.",
-                        "photo": "https://via.placeholder.com/150"
-                    }
-                }
-            ]
-        };
-
-        // Agregar capa GeoJSON al mapa
-        L.geoJSON(geojsonFeature, {
-            onEachFeature: function (feature, layer) {
-                if (feature.properties && feature.properties.description) {
-                    layer.bindPopup('<h3>' + feature.properties.name + '</h3><p>' + feature.properties.description + '</p><img src="' + feature.properties.photo + '" alt="Foto">');
-                }
-            }
-        }).addTo(map);
-    </script>
 </body>
 </html>
