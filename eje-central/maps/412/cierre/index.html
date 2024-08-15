@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interactivo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+        }
+        .leaflet-popup-content img {
+            max-width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([44.5231938, -110.8379678], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        var geojsonFeature = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-110.8379678, 44.5231938]
+                    },
+                    "properties": {
+                        "name": "Punto de Ejemplo",
+                        "description": "Este es un punto de ejemplo en el mapa.",
+                        "photo": "https://via.placeholder.com/150"
+                    }
+                }
+            ]
+        };
+
+        L.geoJSON(geojsonFeature, {
+            onEachFeature: function (feature, layer) {
+                if (feature.properties && feature.properties.description) {
+                    layer.bindPopup('<h3>' + feature.properties.name + '</h3><p>' + feature.properties.description + '</p><img src="' + feature.properties.photo + '" alt="Foto">');
+                }
+            }
+        }).addTo(map);
+    </script>
+</body>
+</html>
