@@ -12,15 +12,67 @@
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <style>
-        #map {
-            width: 100%; /* Cambiado a 100% para que abarque todo el ancho de la pantalla */
-            height: 628px;
-        }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                color: #333;
+                background-color: #f4f4f4;
+            }
+            #container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            h3 {
+                text-align: center;
+                margin: 20px 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            p {
+                text-align: center;
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            #map {
+                width: 100%;
+                padding-top: 56.25%; /* Relación de aspecto 16:9 */
+                position: relative;
+            }
+            #map > div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+            .source-credit {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 20px;
+                font-size: 12px;
+                background-color: #fff;
+                margin-top: -5px;
+            }
+            .source-credit div {
+                max-width: 50%;
+            }
         </style>
-        <title></title>
+        <title>Mapa Interactivo</title>
     </head>
     <body>
-        <div id="map"></div>
+        <div id="container">
+            <h3>Cabeza del Mapa: Título descriptivo del mapa</h3>
+            <p>Sumario: Aquí va un resumen o explicación breve del mapa.</p>
+            <div id="map">
+                <div></div>
+            </div>
+            <div class="source-credit">
+                <div>Fuente: Aquí se menciona la fuente de los datos.</div>
+                <div>Créditos: Stats & Maps Design</div>
+            </div>
+        </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/L.Control.Layers.Tree.min.js"></script>
@@ -39,40 +91,37 @@
             highlightLayer = e.target;
             highlightLayer.openPopup();
         }
-        var map = L.map('map', {
+        var map = L.map('map > div', {
             zoomControl:false, maxZoom:28, minZoom:1
         }).fitBounds([[11.176952633177747,-120.91304302898453],[35.1479666702842,-85.74087284840958]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        // remove popup's row if "visible-with-data"
         function removeEmptyRowsFromPopupContent(content, feature) {
-         var tempDiv = document.createElement('div');
-         tempDiv.innerHTML = content;
-         var rows = tempDiv.querySelectorAll('tr');
-         for (var i = 0; i < rows.length; i++) {
-             var td = rows[i].querySelector('td.visible-with-data');
-             var key = td ? td.id : '';
-             if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
-                 rows[i].parentNode.removeChild(rows[i]);
-             }
-         }
-         return tempDiv.innerHTML;
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            var rows = tempDiv.querySelectorAll('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var td = rows[i].querySelector('td.visible-with-data');
+                var key = td ? td.id : '';
+                if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                    rows[i].parentNode.removeChild(rows[i]);
+                }
+            }
+            return tempDiv.innerHTML;
         }
-        // add class to format popup if it contains media
-		function addClassToPopupIfMedia(content, popup) {
-			var tempDiv = document.createElement('div');
-			tempDiv.innerHTML = content;
-			if (tempDiv.querySelector('td img')) {
-				popup._contentNode.classList.add('media');
-					// Delay to force the redraw
-					setTimeout(function() {
-						popup.update();
-					}, 10);
-			} else {
-				popup._contentNode.classList.remove('media');
-			}
-		}
+        function addClassToPopupIfMedia(content, popup) {
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            if (tempDiv.querySelector('td img')) {
+                popup._contentNode.classList.add('media');
+                setTimeout(function() {
+                    popup.update();
+                }, 10);
+            } else {
+                popup._contentNode.classList.remove('media');
+            }
+        }
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
@@ -121,10 +170,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_Desplazados_1_0(feature) {
@@ -155,7 +204,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(224,195,6,1.0)',
+                fillColor: 'rgba(175,44,226,1.0)',
                 interactive: true,
             }
                     break;
@@ -170,11 +219,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,247,1,1.0)',
+                fillColor: 'rgba(255,230,1,1.0)',
                 interactive: true,
             }
                     break;
-                case 'Occidente':
+                case 'Este':
                     return {
                 pane: 'pane_Desplazados_1',
                 opacity: 1,
