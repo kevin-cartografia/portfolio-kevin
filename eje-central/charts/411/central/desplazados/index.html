@@ -97,38 +97,30 @@
         layer_GoogleMaps_0;
         map.addLayer(layer_GoogleMaps_0);
         function pop_Desplazados_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><strong>Entidades</strong><br />' + (feature.properties['Entidades'] !== null ? autolinker.link(feature.properties['Entidades'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Región</strong><br />' + (feature.properties['Región'] !== null ? autolinker.link(feature.properties['Región'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Desplazados</strong><br />' + (feature.properties['Desplazados'] !== null ? autolinker.link(feature.properties['Desplazados'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Porcentaje"colspan="2"><strong>Porcentaje</strong><br />' + (feature.properties['Porcentaje'] !== null ? autolinker.link(feature.properties['Porcentaje'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
+    // Eliminar los eventos para evitar el popup on hover
+    layer.off('mouseover');
+    layer.off('mouseout');
+    
+    var popupContent = '<table>\
+            <tr>\
+                <td colspan="2"><strong>Entidades</strong><br />' + (feature.properties['Entidades'] !== null ? autolinker.link(feature.properties['Entidades'].toLocaleString()) : '') + '</td>\
+            </tr>\
+            <tr>\
+                <td colspan="2"><strong>Región</strong><br />' + (feature.properties['Región'] !== null ? autolinker.link(feature.properties['Región'].toLocaleString()) : '') + '</td>\
+            </tr>\
+            <tr>\
+                <td colspan="2"><strong>Desplazados</strong><br />' + (feature.properties['Desplazados'] !== null ? autolinker.link(feature.properties['Desplazados'].toLocaleString()) : '') + '</td>\
+            </tr>\
+            <tr>\
+                <td class="visible-with-data" id="Porcentaje"colspan="2"><strong>Porcentaje</strong><br />' + (feature.properties['Porcentaje'] !== null ? autolinker.link(feature.properties['Porcentaje'].toLocaleString()) : '') + '</td>\
+            </tr>\
+        </table>';
+    var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+    layer.on('popupopen', function(e) {
+        addClassToPopupIfMedia(content, e.popup);
+    });
+    layer.bindPopup(content, { maxHeight: 400 });
+}
 
         function style_Desplazados_1_0(feature) {
             switch(String(feature.properties['Región'])) {
