@@ -8,7 +8,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 650px;
+            height: 100vh; /* Ajustado para que se adapte al contenido */
             background-color: #fff;
             font-family: Arial, sans-serif;
         }
@@ -23,12 +23,12 @@
         }
         iframe {
             width: 100%;
-            height: 500px;
+            height: 500px; /* Ajusta según el contenido del iframe */
             border: 0;
         }
         .footer-note {
             position: absolute;
-            bottom: -140px;
+            bottom: -10px; /* Ajustado para quedar 10px debajo del mapa */
             right: 10px;
             font-size: 10px;
             color: #333;
@@ -37,7 +37,7 @@
         }
         .source-note {
             position: absolute;
-            bottom: -140px;
+            bottom: -10px; /* Ajustado para quedar 10px debajo del mapa */
             left: 10px;
             font-size: 10px;
             color: #333;
@@ -66,7 +66,7 @@
 <body>
     <h3>REGIONES CON MÁS DESPLAZAMIENTO EN MÉXICO</h3>
     <div class="summary">
-      <b>EN 2022, AL MENOS 699 MIL 120</B> personas cambiaron de vivienda o lugar de residencia para protegerse de la delincuencia. En estas regiones se focalizó el desplazamiento interno en el país.
+      <b>EN 2022, AL MENOS 699 MIL 120</b> personas cambiaron de vivienda o lugar de residencia para protegerse de la delincuencia. En estas regiones se focalizó el desplazamiento interno en el país.
     </div>
     <div class="map-container">
         <iframe src="https://kevin-cartografia.github.io/portfolio-kevin/eje-central/charts/411/central/desplazados/index.html" allowfullscreen></iframe>
