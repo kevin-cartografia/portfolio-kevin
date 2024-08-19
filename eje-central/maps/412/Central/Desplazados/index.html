@@ -8,12 +8,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh; /* Ajustado para que se adapte al contenido */
+            height: 100vh;
             background-color: #fff;
             font-family: Arial, sans-serif;
         }
         .map-container {
             width: 95vw;
+            min-height: 500px;
             max-height: 80vh;
             padding: 10px;
             box-sizing: border-box;
@@ -23,12 +24,12 @@
         }
         iframe {
             width: 100%;
-            height: 500px; /* Ajusta según el contenido del iframe */
+            height: 100%;
             border: 0;
         }
         .footer-note {
             position: absolute;
-            bottom: -10px; /* Ajustado para quedar 10px debajo del mapa */
+            bottom: -140px;
             right: 10px;
             font-size: 10px;
             color: #333;
@@ -37,7 +38,7 @@
         }
         .source-note {
             position: absolute;
-            bottom: -10px; /* Ajustado para quedar 10px debajo del mapa */
+            bottom: -140px;
             left: 10px;
             font-size: 10px;
             color: #333;
