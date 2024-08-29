@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cierre</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: relative;
+            max-width: 100%;
+        }
+        .infografia {
+            width: 100%;
+            height: auto;
+        }
+        .popup {
+            position: absolute;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Base Cierre 414.jpg" alt="Infografía" class="infografia">
+        <div class="marker" style="top: 20%; left: 40%;" data-popup="popup1"></div>
+        <div id="popup1" class="popup" style="top: 25%; left: 45%;">Este es un popup con información</div>
+    </div>
+    <script>
+        document.querySelectorAll('.marker').forEach(marker => {
+            marker.addEventListener('mouseover', function() {
+                document.getElementById(this.getAttribute('data-popup')).style.display = 'block';
+            });
+            marker.addEventListener('mouseout', function() {
+                document.getElementById(this.getAttribute('data-popup')).style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
