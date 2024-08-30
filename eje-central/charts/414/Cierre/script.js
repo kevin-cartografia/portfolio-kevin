@@ -13,7 +13,7 @@ markers.forEach(function(marker) {
         var popupId = this.getAttribute('data-popup');
         var popupContent = document.getElementById(popupId).innerHTML;
         document.getElementById("modal-text").innerHTML = popupContent;
-        modal.style.display = "block";
+        modal.style.display = "flex";
     }
 });
 
