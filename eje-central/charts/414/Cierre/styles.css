@@ -60,3 +60,18 @@ body {
     border-style: solid;
     border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent;
 }
+
+/* Media query para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .popup {
+        top: 50% !important;  /* Centrar verticalmente */
+        left: 50% !important; /* Centrar horizontalmente */
+        transform: translate(-50%, -50%); /* Ajustar posición central */
+        max-width: 90%; /* Ancho máximo para dispositivos móviles */
+    }
+    
+    .marker {
+        width: 20px; /* Ajustar el tamaño del marcador para pantallas más pequeñas */
+        height: 20px;
+    }
+}
