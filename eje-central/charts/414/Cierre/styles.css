@@ -1,4 +1,12 @@
+@font-face {
+    font-family: 'Glober';
+    src: url('https://kevin-cartografia.github.io/portfolio-kevin/eje-central/charts/414/Cierre/assets/fonts/Glober.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
+    font-family: 'Glober', sans-serif;
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
