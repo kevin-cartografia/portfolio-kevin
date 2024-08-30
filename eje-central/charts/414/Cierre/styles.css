@@ -29,9 +29,9 @@ body {
 
 .marker {
     position: absolute;
-    width: 25px;
-    height: 25px;
-    background-color: #ff6347; /* Tomate */
+    width: 30px;
+    height: 30px;
+    background-color: #00a1e4; /* Azul Eje */
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -39,8 +39,8 @@ body {
 }
 
 .marker:hover {
-    transform: scale(1.5);
-    background-color: #ff4500; /* Naranja rojizo */
+    transform: scale(1.8);
+    background-color: #1c4f78; /* Azul Eje oscuro */
 }
 
 .popup {
