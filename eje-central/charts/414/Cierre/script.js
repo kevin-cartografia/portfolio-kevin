@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
         marker.addEventListener('mouseover', function() {
             const popupId = this.getAttribute('data-popup');
             const popup = document.getElementById(popupId);
+
+            // Posicionar el popup cerca del marcador
+            const markerRect = this.getBoundingClientRect();
+            popup.style.top = `${markerRect.top - popup.offsetHeight}px`; // Arriba del marcador
+            popup.style.left = `${markerRect.left + markerRect.width / 2}px`; // Centrado respecto al marcador
+
             popup.style.display = 'block';
         });
 
