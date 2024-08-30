@@ -1,17 +1,30 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const markers = document.querySelectorAll('.marker');
+// Selecciona el modal
+var modal = document.getElementById("modal");
 
-    markers.forEach(marker => {
-        marker.addEventListener('mouseover', function() {
-            const popupId = this.getAttribute('data-popup');
-            const popup = document.getElementById(popupId);
-            popup.style.display = 'block';
-        });
+// Selecciona el elemento <span> que cierra el modal
+var span = document.getElementsByClassName("close")[0];
 
-        marker.addEventListener('mouseout', function() {
-            const popupId = this.getAttribute('data-popup');
-            const popup = document.getElementById(popupId);
-            popup.style.display = 'none';
-        });
-    });
+// Selecciona todos los marcadores
+var markers = document.querySelectorAll('.marker');
+
+// Añade eventos de clic a los marcadores para mostrar el modal con su contenido
+markers.forEach(function(marker) {
+    marker.onclick = function() {
+        var popupId = this.getAttribute('data-popup');
+        var popupContent = document.getElementById(popupId).innerHTML;
+        document.getElementById("modal-text").innerHTML = popupContent;
+        modal.style.display = "block";
+    }
 });
+
+// Cuando el usuario hace clic en <span> (la "X"), cierra el modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Cuando el usuario hace clic fuera del contenido del modal, cierra el modal
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
