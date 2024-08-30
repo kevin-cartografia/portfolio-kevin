@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.infografia {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.marker {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #ff6347; /* Tomate */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.marker:hover {
+    transform: scale(1.2);
+    background-color: #ff4500; /* Naranja rojizo */
+}
+
+.popup {
+    position: absolute;
+    display: none;
+    max-width: 200px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    line-height: 1.5;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.popup:after {
+    content: "";
+    position: absolute;
+    bottom: 100%; /* La punta de la flecha estará arriba del popup */
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent;
+}
