@@ -1,12 +1,4 @@
-@font-face {
-    font-family: 'Glober';
-    src: url('https://kevin-cartografia.github.io/portfolio-kevin/eje-central/charts/414/Cierre/assets/fonts/Glober.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
-    font-family: 'Glober', sans-serif;
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
@@ -36,11 +28,14 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, background-color 0.3s ease;
+    
+    /* Añadir animación de pulsación */
+    animation: pulse 2s infinite;
 }
 
 .marker:hover {
-    transform: scale(1.8);
-    background-color: #1c4f78; /* Azul Eje oscuro */
+    transform: scale(1.5);
+    background-color: #ff4500; /* Naranja rojizo */
 }
 
 .popup {
@@ -69,6 +64,22 @@ body {
     border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent;
 }
 
+/* Definición de la animación de pulsación */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 /* Estilos del modal */
 .modal {
     display: none; 
@@ -86,6 +97,7 @@ body {
 }
 
 .modal-content {
+    font-family: 'Glober', sans-serif; /* Asegúrate de que esta línea esté presente */
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
