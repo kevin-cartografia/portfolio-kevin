@@ -29,9 +29,9 @@ body {
 
 .marker {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: #00a1e4; /* Azul Eje */
+    width: 25px;
+    height: 25px;
+    background-color: #50b848; /* Verde Eje */
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
