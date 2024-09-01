@@ -7,57 +7,24 @@ var markers = document.querySelectorAll('.marker');
 // Obtén el elemento <span> que cierra el modal
 var span = document.querySelector(".close");
 
-// Variable para rastrear el índice del marker actual
-var currentMarkerIndex = 0;
-
-// Función para iniciar la animación en el marker
-function startAnimation(marker) {
-    marker.classList.add('active');
-}
-
-// Función para detener la animación en el marker
-function stopAnimation(marker) {
-    marker.classList.remove('active');
-}
-
-// Función para mostrar el modal
-function showModal(marker, popupId) {
-    stopAnimation(marker);
-    var popupContent = document.getElementById(popupId).innerHTML;
-    document.getElementById('modal-text').innerHTML = popupContent;
-    modal.style.display = "flex";
-
-    // Configurar el cierre del modal
-    span.onclick = function() {
-        modal.style.display = "none";
-        currentMarkerIndex++;
-        if (currentMarkerIndex < markers.length) {
-            startAnimation(markers[currentMarkerIndex]);
-        }
-    };
-
-    // Cerrar el modal al hacer clic fuera de él
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-            currentMarkerIndex++;
-            if (currentMarkerIndex < markers.length) {
-                startAnimation(markers[currentMarkerIndex]);
-            }
-        }
-    };
-}
-
-// Empezar la animación en el primer marker al cargar la página
-document.addEventListener("DOMContentLoaded", function() {
-    if (markers.length > 0) {
-        startAnimation(markers[currentMarkerIndex]);
+// Cuando el usuario haga clic en un marcador, abre el modal
+markers.forEach(marker => {
+    marker.onclick = function() {
+        var popupId = this.getAttribute('data-popup');
+        var popupContent = document.getElementById(popupId).innerHTML;
+        document.getElementById('modal-text').innerHTML = popupContent;
+        modal.style.display = "flex";
     }
-
-    markers.forEach(marker => {
-        marker.onclick = function() {
-            var popupId = this.getAttribute('data-popup');
-            showModal(marker, popupId);
-        };
-    });
 });
+
+// Cuando el usuario haga clic en <span> (x), cierra el modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Cuando el usuario haga clic en cualquier lugar fuera del modal, ciérralo
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
