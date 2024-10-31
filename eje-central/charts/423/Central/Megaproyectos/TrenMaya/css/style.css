@@ -52,17 +52,17 @@ html, body {
 .content h2 {
   margin: 0;
   font-size: 1.5em;
-  color: #333;
+  color: #1d4270;
 }
 
 .content h4 {
   margin: 10px 0;
   font-size: 1.1em;
-  color: #666;
+  color: black;
 }
 
 .content p {
   font-size: 0.9em;
-  color: #777;
+  color: black;
   margin: 10px 0 0;
 }
