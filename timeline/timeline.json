@@ -1,0 +1,32 @@
+{
+  "title": {
+    "text": {
+      "headline": "Mi Línea de Tiempo",
+      "text": "<p>Una cronología personalizada</p>"
+    }
+  },
+  "events": [
+    {
+      "start_date": {
+        "year": "2020",
+        "month": "01",
+        "day": "01"
+      },
+      "text": {
+        "headline": "Inicio de un nuevo año",
+        "text": "<p>Descripción del evento aquí</p>"
+      }
+    },
+    {
+      "start_date": {
+        "year": "2021",
+        "month": "05",
+        "day": "15"
+      },
+      "text": {
+        "headline": "Evento importante",
+        "text": "<p>Otro evento significativo</p>"
+      }
+    }
+  ]
+}
