@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Galería de Slides</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+    }
+
+    .slider {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      background: #fff;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      width: 100%;
+      padding: 1em;
+    }
+
+    .caption h3 {
+      margin: 0 0 0.3em;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .buttons button {
+      padding: 0.5em 1em;
+      margin: 0 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="slides" id="slides">
+    <div class="slide">
+      <img src="img1.jpg" alt="Imagen 1">
+      <div class="caption">
+        <h3>Título 1</h3>
+        <p>Descripción de la imagen 1.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="img2.jpg" alt="Imagen 2">
+      <div class="caption">
+        <h3>Título 2</h3>
+        <p>Descripción de la imagen 2.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="img3.jpg" alt="Imagen 3">
+      <div class="caption">
+        <h3>Título 3</h3>
+        <p>Descripción de la imagen 3.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button onclick="prevSlide()">Anterior</button>
+  <button onclick="nextSlide()">Siguiente</button>
+</div>
+
+<script>
+  const slides = document.getElementById("slides");
+  const totalSlides = document.querySelectorAll(".slide").length;
+  let index = 0;
+
+  function showSlide(i) {
+    index = (i + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function nextSlide() {
+    showSlide(index + 1);
+  }
+
+  function prevSlide() {
+    showSlide(index - 1);
+  }
+
+  // AutoSlide (opcional)
+  // setInterval(() => nextSlide(), 5000);
+</script>
+
+</body>
+</html>
