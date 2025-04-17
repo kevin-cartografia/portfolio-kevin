@@ -11,14 +11,15 @@
     }
 
     .slider {
-      position: relative;
-      max-width: 800px;
-      margin: auto;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      background: #fff;
-    }
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  background: #fff;
+  min-height: 700px; /* ← Agrega esto aquí */
+}
 
     .slides {
       display: flex;
@@ -133,12 +134,16 @@
   // setInterval(() => nextSlide(), 5000);
 <script>
   function sendHeight() {
-    const height = document.documentElement.scrollHeight;
+    const height = document.body.scrollHeight;
     parent.postMessage(height, '*');
   }
 
-  window.addEventListener('load', sendHeight);
+  window.addEventListener('load', () => {
+    setTimeout(sendHeight, 500); // Espera medio segundo
+  });
+
   window.addEventListener('resize', sendHeight);
 </script>
+
 </body>
 </html>
