@@ -1,91 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Galería de Slides</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      background: #f8f8f8;
-    }
-
-    .slider {
-  position: relative;
-  max-width: 800px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  background: #fff;
-  min-height: 700px; /* ← Agrega esto aquí */
+<meta charset="UTF-8">
+<title>Galería de Slides</title>
+<style>
+body {
+font-family: sans-serif;
+margin: 0;
+background: #f8f8f8;
 }
 
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      width: 100%;
-    }
+.slider {
+position: relative;
+max-width: 800px;
+margin: auto;
+overflow: hidden;
+border-radius: 12px;
+box-shadow: 0 0 20px rgba(0,0,0,0.2);
+background: #fff;
+}
 
-    .slide {
-      min-width: 100%;
-      box-sizing: border-box;
-      position: relative;
-    }
+.slides {
+display: flex;
+transition: transform 0.5s ease-in-out;
+width: 100%;
+}
 
-    .slide img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+.slide {
+min-width: 100%;
+box-sizing: border-box;
+position: relative;
+}
 
-    .caption {
-      position: absolute;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      width: 100%;
-      padding: 1em;
-    }
+.slide img {
+width: 100%;
+height: auto;
+display: block;
+}
 
-    .caption h3 {
-      margin: 0 0 0.3em;
-    }
+.caption {
+position: absolute;
+bottom: 0;
+background: rgba(0, 0, 0, 0.6);
+color: #fff;
+width: 100%;
+padding: 1em;
+}
 
-    .buttons {
-      text-align: center;
-      margin-top: 10px;
-    }
+.caption h3 {
+margin: 0 0 0.3em;
+}
 
-    .buttons button {
-      padding: 0.5em 1em;
-      margin: 0 5px;
-      font-size: 1em;
-      cursor: pointer;
-    }
-  </style>
+.buttons {
+text-align: center;
+margin-top: 10px;
+}
+
+.buttons button {
+padding: 0.5em 1em;
+margin: 0 5px;
+font-size: 1em;
+cursor: pointer;
+}
+</style>
 </head>
 <body>
 
 <div class="slider">
-  <div class="slides" id="slides">
-    <div class="slide">
+<div class="slides" id="slides">
+<div class="slide">
       <img src="img/img1.webp" alt="Imagen 1">
-      <div class="caption">
+<div class="caption">
+        <h3>Título 1</h3>
+        <p>Descripción de la imagen 1.</p>
         <h3></h3>
         <p>Foto: Especial.</p>
-      </div>
-    </div>
-    <div class="slide">
+</div>
+</div>
+<div class="slide">
       <img src="img/img2.webp" alt="Imagen 2">
-      <div class="caption">
+<div class="caption">
+        <h3>Título 2</h3>
+        <p>Descripción de la imagen 2.</p>
         <h3></h3>
         <p>Foto: Especial.</p>
-      </div>
-    </div>
-    <div class="slide">
+</div>
+</div>
+<div class="slide">
       <img src="img/img3.webp" alt="Imagen 3">
-      <div class="caption">
+<div class="caption">
+        <h3>Título 3</h3>
+        <p>Descripción de la imagen 3.</p>
         <h3></h3>
         <p>Foto: Especial.</p>
         </div>
@@ -102,47 +107,36 @@
       <div class="caption">
         <h3></h3>
         <p>Foto: Especial.</p>
-      </div>
+        </div>
     </div>
-  </div>
+ </div>
 </div>
 
 <div class="buttons">
-  <button onclick="prevSlide()">Anterior</button>
-  <button onclick="nextSlide()">Siguiente</button>
+<button onclick="prevSlide()">Anterior</button>
+<button onclick="nextSlide()">Siguiente</button>
 </div>
 
 <script>
-  const slides = document.getElementById("slides");
-  const totalSlides = document.querySelectorAll(".slide").length;
-  let index = 0;
+const slides = document.getElementById("slides");
+const totalSlides = document.querySelectorAll(".slide").length;
+let index = 0;
 
-  function showSlide(i) {
-    index = (i + totalSlides) % totalSlides;
-    slides.style.transform = `translateX(-${index * 100}%)`;
-  }
+function showSlide(i) {
+index = (i + totalSlides) % totalSlides;
+slides.style.transform = `translateX(-${index * 100}%)`;
+}
 
-  function nextSlide() {
-    showSlide(index + 1);
-  }
+function nextSlide() {
+showSlide(index + 1);
+}
 
-  function prevSlide() {
-    showSlide(index - 1);
-  }
+function prevSlide() {
+showSlide(index - 1);
+}
 
-  // AutoSlide (opcional)
-  // setInterval(() => nextSlide(), 5000);
-<script>
-  function sendHeight() {
-    const height = document.body.scrollHeight;
-    parent.postMessage(height, '*');
-  }
-
-  window.addEventListener('load', () => {
-    setTimeout(sendHeight, 500); // Espera medio segundo
-  });
-
-  window.addEventListener('resize', sendHeight);
+// AutoSlide (opcional)
+// setInterval(() => nextSlide(), 5000);
 </script>
 
 </body>
