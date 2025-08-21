@@ -133,6 +133,12 @@
             color: var(--dark);
         }
         
+        .editable:hover {
+            background-color: #f0f7ff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
         .progress-container {
             margin: 20px 0;
         }
@@ -185,6 +191,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
+            position: relative;
         }
         
         .product-item:hover {
@@ -197,10 +204,11 @@
             color: var(--gray);
             font-size: 1rem;
             margin-bottom: 10px;
-            height: 2.8em;
+            min-height: 2.8em;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 5px;
         }
         
         .product-count {
@@ -217,6 +225,33 @@
             padding: 5px;
             background: var(--light);
             border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .product-actions button {
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-edit {
+            background-color: var(--warning);
+            color: white;
+        }
+        
+        .btn-remove {
+            background-color: var(--danger);
+            color: white;
         }
         
         .alert {
@@ -304,6 +339,15 @@
             box-shadow: 0 6px 12px rgba(95, 99, 104, 0.4);
         }
         
+        button.success {
+            background: linear-gradient(135deg, var(--success), #27ae60);
+            box-shadow: 0 4px 8px rgba(52, 168, 83, 0.3);
+        }
+        
+        button.success:hover {
+            box-shadow: 0 6px 12px rgba(52, 168, 83, 0.4);
+        }
+        
         .modal {
             display: none;
             position: fixed;
@@ -362,6 +406,69 @@
             margin-top: 25px;
         }
         
+        .day-completed {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid var(--success);
+        }
+        
+        .day-completed .card {
+            opacity: 0.9;
+        }
+        
+        .day-completed .product-item {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .day-completed .editable {
+            cursor: not-allowed;
+        }
+        
+        .day-completed button:not(#new-day-btn) {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .completed-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .completed-message {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .completed-message h2 {
+            color: var(--success);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .completed-stats {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .completed-stats .stat {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        
         @media (max-width: 768px) {
             .dashboard {
                 grid-template-columns: 1fr;
@@ -397,11 +504,11 @@
                 <h2><i class="fas fa-clock"></i> Resumen del Día</h2>
                 <div class="stat">
                     <span>Hora de entrada:</span>
-                    <span class="stat-value" id="start-time">12:00</span>
+                    <span class="stat-value editable" id="start-time">12:00</span>
                 </div>
                 <div class="stat">
                     <span>Hora de salida:</span>
-                    <span class="stat-value" id="end-time">19:00</span>
+                    <span class="stat-value editable" id="end-time">19:00</span>
                 </div>
                 <div class="stat">
                     <span>Tiempo transcurrido:</span>
@@ -457,43 +564,9 @@
         </div>
         
         <div class="card">
-            <h2><i class="fas fa-tasks"></i> Productos Realizados</h2>
-            <div class="product-grid">
-                <div class="product-item" data-product="banner">
-                    <h3>Historias/Banner</h3>
-                    <div class="product-count" id="count-banner">3</div>
-                    <div class="time-display">15 min c/u</div>
-                </div>
-                <div class="product-item" data-product="infografia">
-                    <h3>Infografía</h3>
-                    <div class="product-count" id="count-infografia">0</div>
-                    <div class="time-display">2 horas c/u</div>
-                </div>
-                <div class="product-item" data-product="radiografia">
-                    <h3>Radiografía</h3>
-                    <div class="product-count" id="count-radiografia">1</div>
-                    <div class="time-display">1.5 horas c/u</div>
-                </div>
-                <div class="product-item" data-product="carrusel">
-                    <h3>Infografía Carrusel</h3>
-                    <div class="product-count" id="count-carrusel">0</div>
-                    <div class="time-display">2 horas c/u</div>
-                </div>
-                <div class="product-item" data-product="viral">
-                    <h3>Video viral</h3>
-                    <div class="product-count" id="count-viral">0</div>
-                    <div class="time-display">30 min c/u</div>
-                </div>
-                <div class="product-item" data-product="nota">
-                    <h3>Video nota</h3>
-                    <div class="product-count" id="count-nota">0</div>
-                    <div class="time-display">45 min c/u</div>
-                </div>
-                <div class="product-item" data-product="traduccion">
-                    <h3>Video traducción</h3>
-                    <div class="product-count" id="count-traduccion">0</div>
-                    <div class="time-display">1 hora c/u</div>
-                </div>
+            <h2><i class="fas fa-tasks"></i> Productos Realizados <button class="secondary" id="add-task-btn" style="padding: 8px 15px; font-size: 14px; margin-left: auto;"><i class="fas fa-plus"></i> Nueva Tarea</button></h2>
+            <div class="product-grid" id="product-grid">
+                <!-- Los productos se generarán dinámicamente -->
             </div>
         </div>
         
@@ -504,29 +577,29 @@
             <button id="add-product-btn">
                 <i class="fas fa-plus-circle"></i> Agregar Producto
             </button>
+            <button id="end-day-btn" class="success">
+                <i class="fas fa-flag-checkered"></i> Terminar Jornada
+            </button>
             <button id="reset-day-btn" class="secondary">
                 <i class="fas fa-redo-alt"></i> Reiniciar Día
             </button>
         </div>
     </div>
 
-    <!-- Modal para agregar productos -->
+    <!-- Modal para agregar/editar productos -->
     <div class="modal" id="product-modal">
         <div class="modal-content">
             <span class="close-modal" id="close-modal">&times;</span>
-            <h2><i class="fas fa-plus-circle"></i> Agregar Producto</h2>
+            <h2><i class="fas fa-plus-circle"></i> <span id="modal-title">Agregar Producto</span></h2>
             
             <div class="form-group">
-                <label for="product-select">Selecciona un producto:</label>
-                <select id="product-select">
-                    <option value="banner">Historias/Banner (15 min)</option>
-                    <option value="infografia">Infografía (2 horas)</option>
-                    <option value="radiografia">Radiografía (1.5 horas)</option>
-                    <option value="carrusel">Infografía Carrusel (2 horas)</option>
-                    <option value="viral">Video viral (30 min)</option>
-                    <option value="nota">Video nota (45 min)</option>
-                    <option value="traduccion">Video traducción (1 hora)</option>
-                </select>
+                <label for="product-name">Nombre de la tarea:</label>
+                <input type="text" id="product-name" placeholder="Ej: Diseño de banner">
+            </div>
+            
+            <div class="form-group">
+                <label for="product-time">Tiempo estimado (minutos):</label>
+                <input type="number" id="product-time" min="1" value="30">
             </div>
             
             <div class="form-group">
@@ -538,6 +611,51 @@
                 <button class="secondary" id="cancel-modal">Cancelar</button>
                 <button id="confirm-add">Agregar</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar horas -->
+    <div class="modal" id="time-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-time-modal">&times;</span>
+            <h2><i class="fas fa-clock"></i> <span id="time-modal-title">Editar Hora</span></h2>
+            
+            <div class="form-group">
+                <label for="time-input">Nueva hora (HH:MM):</label>
+                <input type="time" id="time-input" value="12:00">
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="secondary" id="cancel-time-modal">Cancelar</button>
+                <button id="confirm-time">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay de jornada completada -->
+    <div class="completed-overlay" id="completed-overlay">
+        <div class="completed-message">
+            <h2><i class="fas fa-trophy"></i> Jornada Completada</h2>
+            <p>¡Felicidades! Has terminado tu jornada laboral.</p>
+            
+            <div class="completed-stats">
+                <div class="stat">
+                    <span>Productos completados:</span>
+                    <span class="stat-value" id="completed-total">0</span>
+                </div>
+                <div class="stat">
+                    <span>Tiempo total trabajado:</span>
+                    <span class="stat-value" id="completed-time">0:00</span>
+                </div>
+                <div class="stat">
+                    <span>Eficiencia:</span>
+                    <span class="stat-value" id="completed-efficiency">0%</span>
+                </div>
+            </div>
+            
+            <button id="new-day-btn">
+                <i class="fas fa-calendar-plus"></i> Iniciar Nueva Jornada
+            </button>
         </div>
     </div>
 
@@ -560,58 +678,162 @@
             const alertContainerElement = document.getElementById('alert-container');
             const refreshButton = document.getElementById('refresh-btn');
             const addProductButton = document.getElementById('add-product-btn');
+            const addTaskButton = document.getElementById('add-task-btn');
             const resetDayButton = document.getElementById('reset-day-btn');
+            const endDayButton = document.getElementById('end-day-btn');
+            const newDayButton = document.getElementById('new-day-btn');
             const productModal = document.getElementById('product-modal');
+            const timeModal = document.getElementById('time-modal');
             const closeModalButton = document.getElementById('close-modal');
+            const closeTimeModalButton = document.getElementById('close-time-modal');
             const cancelModalButton = document.getElementById('cancel-modal');
+            const cancelTimeModalButton = document.getElementById('cancel-time-modal');
             const confirmAddButton = document.getElementById('confirm-add');
-            const productSelect = document.getElementById('product-select');
-            const productQuantity = document.getElementById('product-quantity');
-            const productItems = document.querySelectorAll('.product-item');
+            const confirmTimeButton = document.getElementById('confirm-time');
+            const productNameInput = document.getElementById('product-name');
+            const productTimeInput = document.getElementById('product-time');
+            const productQuantityInput = document.getElementById('product-quantity');
+            const timeInput = document.getElementById('time-input');
+            const productGrid = document.getElementById('product-grid');
+            const modalTitle = document.getElementById('modal-title');
+            const timeModalTitle = document.getElementById('time-modal-title');
+            const completedOverlay = document.getElementById('completed-overlay');
+            const completedTotalElement = document.getElementById('completed-total');
+            const completedTimeElement = document.getElementById('completed-time');
+            const completedEfficiencyElement = document.getElementById('completed-efficiency');
             
-            // Datos iniciales
+            // Variables de estado
             let workData = {
                 startTime: '12:00',
                 endTime: '19:00',
-                products: {
-                    banner: 3,
-                    infografia: 0,
-                    radiografia: 1,
-                    carrusel: 0,
-                    viral: 0,
-                    nota: 0,
-                    traduccion: 0
-                },
-                productTimes: {
-                    banner: 15, // minutos
-                    infografia: 120,
-                    radiografia: 90,
-                    carrusel: 120,
-                    viral: 30,
-                    nota: 45,
-                    traduccion: 60
-                }
+                products: [
+                    { id: 'banner', name: 'Historias/Banner', time: 15, count: 3 },
+                    { id: 'infografia', name: 'Infografía', time: 120, count: 0 },
+                    { id: 'radiografia', name: 'Radiografía', time: 90, count: 1 },
+                    { id: 'carrusel', name: 'Infografía Carrusel', time: 120, count: 0 },
+                    { id: 'viral', name: 'Video viral', time: 30, count: 0 },
+                    { id: 'nota', name: 'Video nota', time: 45, count: 0 },
+                    { id: 'traduccion', name: 'Video traducción', time: 60, count: 0 }
+                ],
+                editingTimeType: null,
+                editingProductId: null,
+                dayCompleted: false,
+                intervals: []
             };
             
             // Cargar datos desde localStorage si existen
             function loadData() {
                 const savedData = localStorage.getItem('workData');
                 if (savedData) {
-                    workData = JSON.parse(savedData);
-                    
-                    // Actualizar contadores de productos
-                    for (const product in workData.products) {
-                        document.getElementById(`count-${product}`).textContent = workData.products[product];
-                    }
+                    const parsedData = JSON.parse(savedData);
+                    workData = {...workData, ...parsedData};
                     
                     startTimeElement.textContent = workData.startTime;
                     endTimeElement.textContent = workData.endTime;
+                    
+                    // Aplicar estado de jornada completada si corresponde
+                    if (workData.dayCompleted) {
+                        completeDay(false);
+                    }
+                    
+                    renderProducts();
+                } else {
+                    renderProducts();
                 }
             }
             
             // Guardar datos en localStorage
             function saveData() {
                 localStorage.setItem('workData', JSON.stringify(workData));
+            }
+            
+            // Renderizar productos
+            function renderProducts() {
+                productGrid.innerHTML = '';
+                
+                workData.products.forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'product-item';
+                    productItem.dataset.id = product.id;
+                    
+                    if (workData.dayCompleted) {
+                        productItem.style.cursor = 'not-allowed';
+                        productItem.style.opacity = '0.7';
+                    }
+                    
+                    productItem.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <div class="time-display">${product.time} min c/u</div>
+                        <div class="product-count">${product.count}</div>
+                        <div class="product-actions">
+                            <button class="btn-edit" data-id="${product.id}"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="btn-remove" data-id="${product.id}"><i class="fas fa-trash"></i> Eliminar</button>
+                        </div>
+                    `;
+                    
+                    productGrid.appendChild(productItem);
+                    
+                    // Añadir evento para incrementar contador
+                    productItem.addEventListener('click', (e) => {
+                        if (workData.dayCompleted) return;
+                        if (!e.target.closest('.product-actions')) {
+                            product.count++;
+                            saveData();
+                            renderProducts();
+                            updateDashboard();
+                            
+                            // Efecto visual de confirmación
+                            productItem.style.borderColor = 'var(--success)';
+                            productItem.querySelector('.product-count').style.color = 'var(--success)';
+                            setTimeout(() => {
+                                productItem.style.borderColor = '';
+                                productItem.querySelector('.product-count').style.color = '';
+                            }, 500);
+                        }
+                    });
+                });
+                
+                // Añadir eventos a los botones de editar y eliminar
+                document.querySelectorAll('.btn-edit').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        if (workData.dayCompleted) return;
+                        e.stopPropagation();
+                        const productId = btn.dataset.id;
+                        editProduct(productId);
+                    });
+                });
+                
+                document.querySelectorAll('.btn-remove').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        if (workData.dayCompleted) return;
+                        e.stopPropagation();
+                        const productId = btn.dataset.id;
+                        removeProduct(productId);
+                    });
+                });
+            }
+            
+            // Editar producto
+            function editProduct(productId) {
+                const product = workData.products.find(p => p.id === productId);
+                if (product) {
+                    modalTitle.textContent = 'Editar Tarea';
+                    productNameInput.value = product.name;
+                    productTimeInput.value = product.time;
+                    productQuantityInput.value = product.count;
+                    workData.editingProductId = productId;
+                    productModal.style.display = 'flex';
+                }
+            }
+            
+            // Eliminar producto
+            function removeProduct(productId) {
+                if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+                    workData.products = workData.products.filter(p => p.id !== productId);
+                    saveData();
+                    renderProducts();
+                    updateDashboard();
+                }
             }
             
             // Actualizar el reloj
@@ -634,6 +856,8 @@
             
             // Calcular tiempos
             function calculateTimes() {
+                if (workData.dayCompleted) return;
+                
                 const now = new Date();
                 const currentHours = now.getHours();
                 const currentMinutes = now.getMinutes();
@@ -658,9 +882,9 @@
                 
                 // Calcular tiempo consumido por productos
                 let totalConsumedMinutes = 0;
-                for (const product in workData.products) {
-                    totalConsumedMinutes += workData.products[product] * workData.productTimes[product];
-                }
+                workData.products.forEach(product => {
+                    totalConsumedMinutes += product.count * product.time;
+                });
                 
                 // Calcular eficiencia y diferencia
                 const efficiency = totalConsumedMinutes > 0 ? 
@@ -688,7 +912,7 @@
                 }
                 
                 // Actualizar estadísticas de productividad
-                totalProductsElement.textContent = Object.values(workData.products).reduce((a, b) => a + b, 0);
+                totalProductsElement.textContent = workData.products.reduce((sum, product) => sum + product.count, 0);
                 plannedTimeElement.textContent = formatMinutes(totalConsumedMinutes);
                 actualTimeElement.textContent = formatMinutes(elapsedMinutes);
                 
@@ -775,54 +999,248 @@
                 calculateTimes();
             }
             
+            // Terminar la jornada
+            function completeDay(showOverlay = true) {
+                // Detener todos los intervalos
+                workData.intervals.forEach(interval => {
+                    clearInterval(interval);
+                });
+                
+                workData.dayCompleted = true;
+                
+                // Aplicar estilos de jornada completada
+                document.body.classList.add('day-completed');
+                
+                // Deshabilitar botones excepto "Nueva Jornada"
+                refreshButton.disabled = true;
+                addProductButton.disabled = true;
+                addTaskButton.disabled = true;
+                resetDayButton.disabled = true;
+                endDayButton.disabled = true;
+                
+                // Calcular estadísticas finales
+                const now = new Date();
+                const currentHours = now.getHours();
+                const currentMinutes = now.getMinutes();
+                
+                const [startHours, startMinutes] = workData.startTime.split(':').map(Number);
+                const startTotalMinutes = startHours * 60 + startMinutes;
+                const currentTotalMinutes = currentHours * 60 + currentMinutes;
+                
+                let elapsedMinutes = currentTotalMinutes - startTotalMinutes;
+                if (elapsedMinutes < 0) elapsedMinutes = 0;
+                
+                let totalConsumedMinutes = 0;
+                workData.products.forEach(product => {
+                    totalConsumedMinutes += product.count * product.time;
+                });
+                
+                const efficiency = totalConsumedMinutes > 0 ? 
+                    Math.min(100, Math.round((elapsedMinutes / totalConsumedMinutes) * 100)) : 0;
+                
+                // Actualizar overlay de finalización
+                completedTotalElement.textContent = workData.products.reduce((sum, product) => sum + product.count, 0);
+                completedTimeElement.textContent = formatMinutes(elapsedMinutes);
+                completedEfficiencyElement.textContent = `${efficiency}%`;
+                completedEfficiencyElement.style.color = efficiency >= 100 ? 'var(--success)' : 
+                                                       efficiency >= 80 ? 'var(--warning)' : 'var(--danger)';
+                
+                // Mostrar overlay si se solicita
+                if (showOverlay) {
+                    completedOverlay.style.display = 'flex';
+                }
+                
+                // Guardar estado
+                saveData();
+                
+                // Guardar historial
+                saveToHistory(elapsedMinutes, totalConsumedMinutes);
+            }
+            
+            // Guardar en historial
+            function saveToHistory(elapsedMinutes, totalConsumedMinutes) {
+                const today = new Date().toLocaleDateString('es-ES');
+                const history = JSON.parse(localStorage.getItem('workHistory') || '[]');
+                
+                // Buscar si ya existe una entrada para hoy
+                const todayIndex = history.findIndex(entry => entry.date === today);
+                
+                const historyEntry = {
+                    date: today,
+                    startTime: workData.startTime,
+                    endTime: workData.endTime,
+                    totalProducts: workData.products.reduce((sum, product) => sum + product.count, 0),
+                    totalTime: formatMinutes(elapsedMinutes),
+                    plannedTime: formatMinutes(totalConsumedMinutes),
+                    efficiency: totalConsumedMinutes > 0 ? 
+                        Math.min(100, Math.round((elapsedMinutes / totalConsumedMinutes) * 100)) : 0
+                };
+                
+                if (todayIndex !== -1) {
+                    history[todayIndex] = historyEntry;
+                } else {
+                    history.push(historyEntry);
+                }
+                
+                localStorage.setItem('workHistory', JSON.stringify(history));
+            }
+            
+            // Iniciar una nueva jornada
+            function startNewDay() {
+                // Reiniciar contadores de productos
+                workData.products.forEach(product => {
+                    product.count = 0;
+                });
+                
+                // Restaurar estado
+                workData.dayCompleted = false;
+                document.body.classList.remove('day-completed');
+                
+                // Habilitar botones
+                refreshButton.disabled = false;
+                addProductButton.disabled = false;
+                addTaskButton.disabled = false;
+                resetDayButton.disabled = false;
+                endDayButton.disabled = false;
+                
+                // Ocultar overlay
+                completedOverlay.style.display = 'none';
+                
+                // Reiniciar intervalos
+                workData.intervals = [
+                    setInterval(updateClock, 1000),
+                    setInterval(calculateTimes, 60000)
+                ];
+                
+                // Actualizar interfaz
+                renderProducts();
+                updateDashboard();
+                
+                // Guardar estado
+                saveData();
+            }
+            
             // Inicializar
             loadData();
             updateDashboard();
             
-            // Configurar intervalos
-            setInterval(updateClock, 1000);
-            setInterval(calculateTimes, 60000); // Actualizar cálculos cada minuto
+            // Configurar intervalos y guardar sus referencias
+            workData.intervals = [
+                setInterval(updateClock, 1000),
+                setInterval(calculateTimes, 60000)
+            ];
             
             // Event Listeners
             refreshButton.addEventListener('click', updateDashboard);
             
             addProductButton.addEventListener('click', function() {
+                if (workData.dayCompleted) return;
                 productModal.style.display = 'flex';
+                modalTitle.textContent = 'Agregar Producto';
+                productNameInput.value = '';
+                productTimeInput.value = '30';
+                productQuantityInput.value = '1';
+                workData.editingProductId = null;
             });
+            
+            addTaskButton.addEventListener('click', function() {
+                if (workData.dayCompleted) return;
+                productModal.style.display = 'flex';
+                modalTitle.textContent = 'Nueva Tarea';
+                productNameInput.value = '';
+                productTimeInput.value = '30';
+                productQuantityInput.value = '1';
+                workData.editingProductId = null;
+            });
+            
+            endDayButton.addEventListener('click', function() {
+                if (workData.dayCompleted) return;
+                if (confirm('¿Estás seguro de que quieres terminar la jornada? No podrás hacer más cambios hasta que inicies un nuevo día.')) {
+                    completeDay();
+                }
+            });
+            
+            newDayButton.addEventListener('click', startNewDay);
             
             closeModalButton.addEventListener('click', function() {
                 productModal.style.display = 'none';
+            });
+            
+            closeTimeModalButton.addEventListener('click', function() {
+                timeModal.style.display = 'none';
             });
             
             cancelModalButton.addEventListener('click', function() {
                 productModal.style.display = 'none';
             });
             
+            cancelTimeModalButton.addEventListener('click', function() {
+                timeModal.style.display = 'none';
+            });
+            
             confirmAddButton.addEventListener('click', function() {
-                const product = productSelect.value;
-                const quantity = parseInt(productQuantity.value);
+                const name = productNameInput.value.trim();
+                const time = parseInt(productTimeInput.value);
+                const quantity = parseInt(productQuantityInput.value);
                 
-                if (quantity > 0) {
-                    workData.products[product] += quantity;
-                    document.getElementById(`count-${product}`).textContent = workData.products[product];
+                if (name && time > 0 && quantity > 0) {
+                    if (workData.editingProductId) {
+                        // Editar producto existente
+                        const product = workData.products.find(p => p.id === workData.editingProductId);
+                        if (product) {
+                            product.name = name;
+                            product.time = time;
+                            product.count = quantity;
+                        }
+                    } else {
+                        // Crear nuevo producto
+                        const newId = 'product-' + Date.now();
+                        workData.products.push({
+                            id: newId,
+                            name: name,
+                            time: time,
+                            count: quantity
+                        });
+                    }
+                    
                     saveData();
+                    renderProducts();
                     updateDashboard();
                     productModal.style.display = 'none';
-                    
-                    // Mostrar mensaje de confirmación
-                    alert(`Se agregaron ${quantity} unidad(es) de ${productSelect.options[productSelect.selectedIndex].text}`);
+                } else {
+                    alert('Por favor, complete todos los campos correctamente.');
+                }
+            });
+            
+            confirmTimeButton.addEventListener('click', function() {
+                if (workData.dayCompleted) return;
+                
+                const timeValue = timeInput.value;
+                if (timeValue) {
+                    if (workData.editingTimeType === 'start') {
+                        workData.startTime = timeValue;
+                        startTimeElement.textContent = timeValue;
+                    } else if (workData.editingTimeType === 'end') {
+                        workData.endTime = timeValue;
+                        endTimeElement.textContent = timeValue;
+                    }
+                    saveData();
+                    updateDashboard();
+                    timeModal.style.display = 'none';
                 }
             });
             
             resetDayButton.addEventListener('click', function() {
+                if (workData.dayCompleted) return;
+                
                 if (confirm('¿Estás seguro de que quieres reiniciar el día? Se borrarán todos los datos de productos.')) {
                     // Reiniciar contadores de productos
-                    for (const product in workData.products) {
-                        workData.products[product] = 0;
-                        document.getElementById(`count-${product}`).textContent = '0';
-                    }
+                    workData.products.forEach(product => {
+                        product.count = 0;
+                    });
                     
                     saveData();
+                    renderProducts();
                     updateDashboard();
                     alert('Día reiniciado correctamente.');
                 }
@@ -830,46 +1248,21 @@
             
             // Permitir editar horas de entrada y salida
             startTimeElement.addEventListener('click', function() {
-                const newTime = prompt('Introduce la nueva hora de entrada (HH:MM):', workData.startTime);
-                if (newTime && /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(newTime)) {
-                    workData.startTime = newTime;
-                    startTimeElement.textContent = newTime;
-                    saveData();
-                    updateDashboard();
-                } else if (newTime) {
-                    alert('Formato de hora inválido. Usa el formato HH:MM (por ejemplo, 09:00).');
-                }
+                if (workData.dayCompleted) return;
+                
+                workData.editingTimeType = 'start';
+                timeInput.value = workData.startTime;
+                timeModalTitle.textContent = 'Editar Hora de Entrada';
+                timeModal.style.display = 'flex';
             });
             
             endTimeElement.addEventListener('click', function() {
-                const newTime = prompt('Introduce la nueva hora de salida (HH:MM):', workData.endTime);
-                if (newTime && /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(newTime)) {
-                    workData.endTime = newTime;
-                    endTimeElement.textContent = newTime;
-                    saveData();
-                    updateDashboard();
-                } else if (newTime) {
-                    alert('Formato de hora inválido. Usa el formato HH:MM (por ejemplo, 17:00).');
-                }
-            });
-            
-            // Agregar productos haciendo clic en ellos
-            productItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const product = this.dataset.product;
-                    workData.products[product]++;
-                    document.getElementById(`count-${product}`).textContent = workData.products[product];
-                    saveData();
-                    updateDashboard();
-                    
-                    // Efecto visual de confirmación
-                    this.style.borderColor = 'var(--success)';
-                    this.querySelector('.product-count').style.color = 'var(--success)';
-                    setTimeout(() => {
-                        this.style.borderColor = '';
-                        this.querySelector('.product-count').style.color = '';
-                    }, 500);
-                });
+                if (workData.dayCompleted) return;
+                
+                workData.editingTimeType = 'end';
+                timeInput.value = workData.endTime;
+                timeModalTitle.textContent = 'Editar Hora de Salida';
+                timeModal.style.display = 'flex';
             });
         });
     </script>
